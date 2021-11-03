@@ -101,7 +101,8 @@ public class PropertyManager extends Properties {
      * Applications should load any user-specific property overrides directly into this object
      * and then call setProperty whenever a user action needs to change one.
      */
-    public final static PropertyManager userprefs = new LocalProps(new File(StaticUtils.getBinDir(), PRODUCT_NAME + ".props"));
+    // public final static PropertyManager userprefs = new LocalProps(new File(StaticUtils.getBinDir(), PRODUCT_NAME + ".props"));
+    public final static PropertyManager userprefs = new LocalProps(new File(System.getProperty("user.home") + "/.local/share/mc4d/", PRODUCT_NAME + ".props"));
     static {
         System.out.println("Launch dir: " + StaticUtils.getBinDir());
     }
@@ -259,6 +260,9 @@ public class PropertyManager extends Properties {
                 this.store(new FileOutputStream(localPropFile), PRODUCT_NAME + " User Preferences");
             } catch(IOException e) {
                 storeFailed = true; // so as to only give fail msg once
+
+                localPropFile.getParentFile().mkdirs();
+
                 if(!localPropFile.canWrite())
                     System.err.println("Can't write");
                 System.err.println("PropertyManager.LocalProps: Could not store local prop file '" + localPropFile.getAbsolutePath() + "'");

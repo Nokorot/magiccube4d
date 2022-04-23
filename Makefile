@@ -31,9 +31,11 @@ mediafiles:
 	mkdir -p bin;
 	cp $(MEDIA) bin;
 
+
+# NOTE: Do not execute with sudo 
 install:
-	mkdir -p $(PREFIX)/bin;
-	cp -f mc4d $(PREFIX)bin/mc4d;
-	chmod 755 $(PREFIX)bin/mc4d;
-	# mkdir -p $(LOCPREFIX)/mc4d;
-	# cp -f $(JAR) $(LOCPREFIX)/mc4d/$(JAR);
+	sudo mkdir -p $(PREFIX)/bin;
+	sudo cp -f mc4d $(PREFIX)bin/mc4d;
+	sudo chmod 755 $(PREFIX)bin/mc4d;
+	mkdir -p $(LOCPREFIX)/mc4d;
+	cp -f $(JAR) $(LOCPREFIX)/mc4d/$(JAR);
